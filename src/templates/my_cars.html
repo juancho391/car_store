@@ -1,0 +1,34 @@
+{% extends "base_template.html" %}
+
+{% block title %}My Cars{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>My Cars, {{ current_user.name }}</h1>
+    
+    <div class="buttons">
+        <a href="{{ url_for('add_car') }}" class="btn">Add New Car</a>
+        <a href="{{ url_for('index') }}" class="btn">Back to Home</a>
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+    </div>
+
+    {% if cars %}
+        <ul class="car-list">
+            {% for car in cars %}
+                <li>
+                    <strong>Make:</strong> {{ car.make }} |
+                    <strong>Model:</strong> {{ car.model }} |
+                    <strong>Year:</strong> {{ car.year }} |
+                    <strong>Price:</strong> ${{ car.price }} |
+                    <strong>Slug:</strong> {{ car.slug }} |
+                    <form method="POST" action="{{ url_for('delete_car', car_id=car.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no cars yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
