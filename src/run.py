@@ -92,6 +92,13 @@ def login():
     return render_template("login_form.html", form=form)
 
 
+@app.route("/car/<slug>")
+@login_required
+def car_detail(slug):
+    car = Car.get_by_slug(slug)
+    return render_template("car_detail.html", car=car)
+
+
 @app.route("/signup", methods=["GET", "POST"])
 def show_signup_form():
     if current_user.is_authenticated:
