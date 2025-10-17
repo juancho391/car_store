@@ -18,14 +18,15 @@
         {% if cars %}
             <ul class="car-list">
                 {% for car in cars %}
-                    <li>
-                        <strong>Make:</strong> {{ car.make }} |
-                        <strong>Model:</strong> {{ car.model }} |
-                        <strong>Year:</strong> {{ car.year }} |
-                        <strong>Price:</strong> ${{ car.price }} |
-                        <strong>Slug:</strong> {{ car.slug }}
-                    </li>
-                {% endfor %}
+    <li>
+        <a href="{{ url_for('car_detail', slug=car.slug) }}">
+            <strong>Make:</strong> {{ car.make }} |
+            <strong>Price:</strong> ${{ car.price }} |
+            <strong>Slug:</strong> {{ car.slug }}
+        </a>
+    </li>
+{% endfor %}
+
             </ul>
         {% else %}
             <p>No cars available yet.</p>
