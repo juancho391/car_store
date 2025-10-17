@@ -3,7 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from slugify import slugify
 from sqlalchemy.exc import IntegrityError
-from run import db
+from db import db
 
 
 class User(db.Model, UserMixin):
@@ -31,6 +31,10 @@ class User(db.Model, UserMixin):
     @staticmethod
     def get_by_email(email):
         return User.query.filter_by(email=email).first()
+
+    @staticmethod
+    def get_by_id(user_id):
+        return User.query.get(user_id)
 
 
 class Car(db.Model):
@@ -74,3 +78,22 @@ class Car(db.Model):
     @staticmethod
     def get_all():
         return Car.query.all()
+
+    @staticmethod
+    def get_cars_except_user_cars(user_id):
+        return Car.query.filter(Car.user_id != user_id).all()
+
+    @staticmethod
+    def get_user_cars(user_id):
+        return Car.query.filter_by(user_id=user_id).all()
+
+    @staticmethod
+    def get_by_id(car_id):
+        return Car.query.get(car_id)
+
+    @staticmethod
+    def delte_by_id(car_id):
+        car = Car.get_by_id(car_id)
+        if car:
+            db.session.delete(car)
+            db.session.commit()
