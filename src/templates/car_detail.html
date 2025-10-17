@@ -1,0 +1,21 @@
+{% extends "base_template.html" %}
+
+{% block title %}Car Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Car Detail</h1>
+
+    <ul>
+        <li><strong>Make:</strong> {{ car.make }}</li>
+        <li><strong>Model:</strong> {{ car.model }}</li>
+        <li><strong>Year:</strong> {{ car.year }}</li>
+        <li><strong>Price:</strong> ${{ car.price }}</li>
+        <li><strong>Slug:</strong> {{ car.slug }}</li>
+    </ul>
+
+    <div class="buttons">
+        <a href="{{ url_for('index') }}" class="btn">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
