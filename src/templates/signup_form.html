@@ -1,7 +1,9 @@
 {% extends "base_template.html" %}
 
 {% block title %}Sign Up{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='signup_forms.css')}}">
+{% endblock %}
 {% block content %}
     <div class="form-container">
         <h2>Sign Up</h2>
@@ -13,7 +15,7 @@
 
             <div class="form-group">
                 {{ form.name.label }}<br>
-                {{ form.name(size=32) }}
+                {{ form.name(class="input-field") }}
                 {% for error in form.name.errors %}
                     <span class="error">{{ error }}</span>
                 {% endfor %}
@@ -21,7 +23,8 @@
 
             <div class="form-group">
                 {{ form.email.label }}<br>
-                {{ form.email(size=32) }}
+
+                {{ form.email(class="input-field") }}
                 {% for error in form.email.errors %}
                     <span class="error">{{ error }}</span>
                 {% endfor %}
@@ -29,13 +32,13 @@
 
             <div class="form-group">
                 {{ form.password.label }}<br>
-                {{ form.password(size=32) }}
+                {{ form.password(class="input-field") }}
                 {% for error in form.password.errors %}
                     <span class="error">{{ error }}</span>
                 {% endfor %}
             </div>
 
-            <button type="submit">Sign Up</button>
+            <button type="submit" class="sign-up">Sign Up</button>
         </form>
         <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
     </div>

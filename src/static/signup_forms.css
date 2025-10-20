@@ -1,0 +1,45 @@
+
+h2 {
+  color: rebeccapurple;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  gap: 10px;
+  border: 1px solid whitesmoke;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px whitesmoke;
+}
+.form-container:hover {
+  box-shadow: 1px 1px 4px black;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-field {
+  padding: 5px;
+  min-width: 300px;
+}
+
+.sign-up {
+  padding: 5px;
+  background-color: rebeccapurple;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.sign-up:hover {
+  box-shadow: 1px 1px 4px white;
+}
