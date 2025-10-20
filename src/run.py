@@ -138,4 +138,5 @@ def load_user(user_id):
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+        print(db.engine.table_names())
     app.run(debug=True)
