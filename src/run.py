@@ -134,8 +134,29 @@ def logout():
 def load_user(user_id):
     return User.get_by_id(int(user_id))
 
+@app.route("/profile", methods = ['POST', 'GET'])
+def profile():
+    form = CarForm()
+    if form.validate_on_submit():
+        make = form.make.data
+        model = form.model.data
+        year = int(form.year.data)
+        price = float(form.price.data)
+        car = Car(
+            make=make,
+            model=model,
+            year=year,
+            price=price,
+            user_id=current_user.id,
+        )
+        car.generate_slug()
+        car.save()
+        return redirect(url_for("car_detail", slug=car.slug))
+    return render_template("profile_user.html", form=form)
+
 
 if __name__ == "__main__":
+    app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # Limita a 2MB opcional
     with app.app_context():
         db.create_all()
         print(db.engine.table_names())

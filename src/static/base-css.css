@@ -1,18 +1,38 @@
 html, body {
-  background-color: white;
-  margin: 0;
   height: 100%;
+  margin: 0;
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 main {
-  flex: 1 0 auto; /* hace que el main ocupe el espacio restante */
+  flex: 1 0 auto;
+}
+
+footer {
+  margin-top: auto; /* empuja el footer hacia abajo si hay espacio */
+}
+
+/* evita que el logo o inputs rompan el alto del nav */
+nav img {
+  max-height: 40px;
+  width: auto;
+  display: block;
+}
+
+nav > input {
+  flex: 1 1 auto;
+  min-width: 160px;
+  box-sizing: border-box;
+}
+
+/* opcional: forzar alineación consistente */
+nav {
+  align-items: center;
 }
 
 nav {
@@ -31,13 +51,6 @@ nav {
   flex-direction: row;
   gap: 10px;
   align-items: center;
-}
-
-nav > input {
-  flex-grow: 1;
-  padding: 7px;
-  border: 1px solid gray;
-  border-radius: 3px ;
 }
 
 .div-home {

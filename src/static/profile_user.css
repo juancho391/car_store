@@ -1,0 +1,140 @@
+
+main {
+  display: flex;
+  margin-left: 20px;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+h2 {
+  font-weight: bolder;
+  font-size: 23px;
+}
+
+
+
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+
+.section-forms {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn {
+  background-color: rebeccapurple;
+  width: 91.5%;
+  color: white;
+  padding: 5px;
+  border: white;
+  border-radius: 5px;
+}
+
+.form-control {
+  min-width: 90%;
+  padding: 5px;
+}
+
+.cars-profile {
+  padding: 15px;
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 5px;
+}
+
+.post {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.title-car {
+  font-weight: bolder;
+}
+
+.container-car {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+}
+.cointainer-image {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.container-buttons > button {
+  padding: 5px;
+  color: white;
+  background-color: rebeccapurple;
+  border: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.btns-delete {
+  background-color: red !important; 
+}
+
+
+img {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+}
+
+.settings-profile {
+  padding: 10px;
+  padding-top: 0;
+  margin-right: 10px;
+}
+
+.settings-profile > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  margin-right: 10px;
+  box-shadow: 1px 1px 4px gray;
+  border-radius: 5px;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.settings-profile > div > button {
+  color: white;
+  background-color: rebeccapurple;
+  padding: 7px;
+  border: white;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.btns:active {
+  background-color: rgb(90, 0, 90); /* un poco más oscuro */
+}
+
+.btns-delete:active {
+  background-color: rgb(180, 0, 0); /* Más oscuro */
+}

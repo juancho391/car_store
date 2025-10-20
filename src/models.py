@@ -46,7 +46,7 @@ class Car(db.Model):
     year = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     slug = db.Column(db.String(150), unique=True, nullable=False)
-
+    # image_filename = db.Column(db.LargeBinary, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("ad_user.id"), nullable=False)
 
     def __repr__(self):

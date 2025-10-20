@@ -15,7 +15,7 @@ class LoginForm(FlaskForm):
     password = PasswordField("Contraseña", validators=[DataRequired()])
     remember_me = BooleanField("Recuérdame")
     submit = SubmitField("Login")
-
+    
 
 class CarForm(FlaskForm):
     make = StringField("Marca", validators=[DataRequired(), Length(max=80)])
