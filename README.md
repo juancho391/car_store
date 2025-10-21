@@ -63,3 +63,28 @@ A simple web application built with **Flask** to manage a car store. This projec
 | `/update_car/<int:car_id>` | GET, POST | Form to update a car owned by the logged-in user. | Yes |
 | `/profile` | GET, POST | User profile page with user's cars and option to add new cars. | Yes |
 
+7. ##Project Folder Structure
+car_store/
+├── src/
+│   ├── run.py                  # Punto de entrada (Flask app, routes, login)
+│   ├── models.py               # Modelos SQLAlchemy (User, Car) y métodos de consulta
+│   ├── forms.py                # WTForms (LoginForm, SignupForm, CarForm)
+│   ├── db.py                   # Inicialización de db (SQLAlchemy instance)
+│   ├── templates/              # Plantillas Jinja2
+│   │   ├── base_template.html  # Layout base (head, nav, main, footer)
+│   │   ├── index.html
+│   │   ├── profile_user.html
+│   │   ├── update_car.html
+│   │   └── car_detail.html
+│   └── static/                 # Archivos estáticos CSS / imágenes / uploads
+│       ├── base-css.css
+│       ├── profile_user.css
+│       ├── upadte_car.css      # (revisar posible typo: update_car.css)
+│       ├── car_detail.css
+│       ├── index.css
+│       └── images/
+│           └── carro.png
+├── migrations/                 # (si usas Flask-Migrate)
+├── .env                        # Variables de entorno (DB, SECRET_KEY)
+├── requirements.txt
+└── README.md
