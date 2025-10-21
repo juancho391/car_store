@@ -66,25 +66,25 @@ A simple web application built with **Flask** to manage a car store. This projec
 7. ##Project Folder Structure
 car_store/
 ├── src/
-│   ├── run.py                  # Punto de entrada (Flask app, routes, login)
-│   ├── models.py               # Modelos SQLAlchemy (User, Car) y métodos de consulta
-│   ├── forms.py                # WTForms (LoginForm, SignupForm, CarForm)
-│   ├── db.py                   # Inicialización de db (SQLAlchemy instance)
-│   ├── templates/              # Plantillas Jinja2
-│   │   ├── base_template.html  # Layout base (head, nav, main, footer)
-│   │   ├── index.html
-│   │   ├── profile_user.html
-│   │   ├── update_car.html
-│   │   └── car_detail.html
-│   └── static/                 # Archivos estáticos CSS / imágenes / uploads
-│       ├── base-css.css
-│       ├── profile_user.css
-│       ├── upadte_car.css      # (revisar posible typo: update_car.css)
-│       ├── car_detail.css
-│       ├── index.css
-│       └── images/
-│           └── carro.png
-├── migrations/                 # (si usas Flask-Migrate)
-├── .env                        # Variables de entorno (DB, SECRET_KEY)
+│ ├── run.py # Entry point (Flask app, routes, login)
+│ ├── models.py # SQLAlchemy models (User, Car) and query methods
+│ ├── forms.py # WTForms (LoginForm, SignupForm, CarForm)
+│ ├── db.py # Database initialization (SQLAlchemy instance)
+│ ├── templates/ # Jinja2 templates
+│ │ ├── base_template.html # Base layout (head, nav, main, footer)
+│ │ ├── index.html
+│ │ ├── profile_user.html
+│ │ ├── update_car.html
+│ │ └── car_detail.html
+│ └── static/ # Static files (CSS, images, uploads)
+│ ├── base-css.css
+│ ├── profile_user.css
+│ ├── update_car.css # (verificar typo anterior: upadte_car.css)
+│ ├── car_detail.css
+│ ├── index.css
+│ └── images/
+│ └── carro.png
+├── migrations/ # Flask-Migrate migrations (if used)
+├── .env # Environment variables (DB, SECRET_KEY)
 ├── requirements.txt
 └── README.md
