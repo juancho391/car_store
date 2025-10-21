@@ -64,27 +64,30 @@ A simple web application built with **Flask** to manage a car store. This projec
 | `/profile` | GET, POST | User profile page with user's cars and option to add new cars. | Yes |
 
 7. ##Project Folder Structure
-car_store/
-├── src/
-│ ├── run.py # Entry point (Flask app, routes, login)
-│ ├── models.py # SQLAlchemy models (User, Car) and query methods
-│ ├── forms.py # WTForms (LoginForm, SignupForm, CarForm)
-│ ├── db.py # Database initialization (SQLAlchemy instance)
-│ ├── templates/ # Jinja2 templates
-│ │ ├── base_template.html # Base layout (head, nav, main, footer)
-│ │ ├── index.html
-│ │ ├── profile_user.html
-│ │ ├── update_car.html
-│ │ └── car_detail.html
-│ └── static/ # Static files (CSS, images, uploads)
-│ ├── base-css.css
-│ ├── profile_user.css
-│ ├── update_car.css # (verificar typo anterior: upadte_car.css)
-│ ├── car_detail.css
-│ ├── index.css
-│ └── images/
-│ └── carro.png
-├── migrations/ # Flask-Migrate migrations (if used)
-├── .env # Environment variables (DB, SECRET_KEY)
-├── requirements.txt
-└── README.md
+## Project Folder Structure
+
+**car_store/**  
+├─ **src/**  
+│  ├─ **run.py** – Entry point (Flask app, routes, login)  
+│  ├─ **models.py** – SQLAlchemy models (`User`, `Car`) and query methods  
+│  ├─ **forms.py** – WTForms (`LoginForm`, `SignupForm`, `CarForm`)  
+│  ├─ **db.py** – Database initialization (`SQLAlchemy` instance)  
+│  ├─ **templates/** – Jinja2 templates  
+│  │  ├─ **base_template.html** – Base layout (head, nav, main, footer)  
+│  │  ├─ **index.html**  
+│  │  ├─ **profile_user.html**  
+│  │  ├─ **update_car.html**  
+│  │  └─ **car_detail.html**  
+│  └─ **static/** – Static files (CSS, images, uploads)  
+│     ├─ **base-css.css**  
+│     ├─ **profile_user.css**  
+│     ├─ **update_car.css** – (fix typo: was `upadte_car.css`)  
+│     ├─ **car_detail.css**  
+│     ├─ **index.css**  
+│     └─ **images/**  
+│        └─ `carro.png`  
+├─ **migrations/** – Flask-Migrate migrations (if used)  
+├─ **.env** – Environment variables (`DB`, `SECRET_KEY`)  
+├─ **requirements.txt**  
+└─ **README.md**
+
