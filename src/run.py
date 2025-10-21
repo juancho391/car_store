@@ -70,7 +70,6 @@ def add_car():
     return render_template("car_form.html", form=form)
 
 @app.route("/car/<slug>")
-@login_required
 def car_detail(slug):
     car = Car.get_by_slug(slug)
     if car is None:
