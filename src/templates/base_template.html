@@ -18,6 +18,7 @@
             <input type="text" placeholder="Search cars.. ">
             <div class="div-profile">
                 {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('profile') }}"> Profile</a>
                     <a href="{{ url_for('logout') }}">Logout</a>
                 {% else %}
                     <a href="{{ url_for('login') }}"> Login</a>

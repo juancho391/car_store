@@ -16,42 +16,24 @@
     <main class="main-cars">
         <h2>Avaliable cars!</h2>
         <section class="section-cars">
-            <div class="cointainer-post">
-                <div class="cointainer-image">
-                    <img src="../static/images/camaro.jpg" alt="">
+            {% for car in cars %}
+                <div class="cointainer-post">
+                    <div class="cointainer-image">
+                        <img src="{{ url_for('static', filename=car.image_filename) }}" alt="">
+                    </div>
+                    <div class="information-car">
+                        <div>
+                            <p>{{car.model}}</p>
+                            <p>{{car.price}}</p>
+                        </div>
+                        <div class="view-mas">
+                            <button class="button-detail">
+                                <a href="{{ url_for('car_detail', slug=car.slug)}}">View details</a>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <p>2023 Red Sports Car</p>
-                <div class="view-mas">
-                    <p>$50.000</p>
-                    <button class="button-detail">
-                        <a href="">View details</a>
-                    </button>
-                </div>
-            </div>
-            <div class="cointainer-post">
-                <div class="cointainer-image">
-                    <img src="../static/images/lamborghini.jpg" alt="">
-                </div>
-                <p>2023 Red Sports Car</p>
-                <div class="view-mas">
-                    <p>$50.000</p>
-                    <button class="button-detail">
-                        <a href="">View details</a>
-                    </button>
-                </div>
-            </div>
-            <div class="cointainer-post">
-                <div class="cointainer-image">
-                    <img src="../static/images/mustang.jpg" alt="">
-                </div>
-                <p>2023 Red Sports Car</p>
-                <div class="view-mas">
-                    <p>$50.000</p>
-                    <button class="button-detail">
-                        <a href="">View details</a>
-                    </button>
-                </div>
-            </div>
+            {% endfor %}
         </section>
     </main>
 </div>

@@ -3,6 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from slugify import slugify
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import func
 from db import db
 
 
@@ -46,7 +47,7 @@ class Car(db.Model):
     year = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     slug = db.Column(db.String(150), unique=True, nullable=False)
-    # image_filename = db.Column(db.LargeBinary, nullable=False)
+    image_filename = db.Column(db.String(225))
     user_id = db.Column(db.Integer, db.ForeignKey("ad_user.id"), nullable=False)
 
     def __repr__(self):
@@ -90,6 +91,20 @@ class Car(db.Model):
     @staticmethod
     def get_by_id(car_id):
         return Car.query.get(car_id)
+
+    @staticmethod
+    def get_by_make(make, exclude_id=None, limit=5):
+        """
+        Devuelve hasta `limit` coches de la misma marca `make`.
+        Comparación insensible a mayúsculas y excluye `exclude_id` si se pasa.
+        """
+        if not make:
+            return []
+        normalized = make.strip()
+        q = Car.query.filter(func.lower(Car.make) == normalized.lower())
+        if exclude_id is not None:
+            q = q.filter(Car.id != exclude_id)
+        return q.limit(limit).all()
 
     @staticmethod
     def delte_by_id(car_id):

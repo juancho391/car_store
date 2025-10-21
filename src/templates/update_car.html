@@ -1,0 +1,61 @@
+{% extends "base_template.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='profile_user.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="container-profile">
+  <h2>Update car</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      <div class="form-group">
+          {{ form.make.label }}<br>
+          {{ form.make(size=32, class="form-control") }}
+      </div>
+
+      <div class="form-group">
+          {{ form.model.label }}<br>
+          {{ form.model(size=32, class="form-control") }}
+      </div>
+
+      <div class="form-group">
+          {{ form.year.label }}<br>
+          {{ form.year(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+          {{ form.price.label }}<br>
+          {{ form.price(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.image.label }}<br>
+        {{ form.image() }}
+      </div>
+
+      <div class="buttons">
+          <button type="submit" class="btn btns">Save Car</button>
+      </div>
+  </form>
+</section>
+
+<section class="settings-profile">
+  <h2>Current car info</h2>
+  <p><strong>Make:</strong> {{ car.make }}</p>
+  <p><strong>Model:</strong> {{ car.model }}</p>
+  <p><strong>Year:</strong> {{ car.year }}</p>
+  <p><strong>Price:</strong> ${{ "%.2f"|format(car.price) }}</p>
+
+  <div class="img_container">
+    {% if car.image_filename %}
+      <img src="{{ url_for('static', filename=car.image_filename) }}" alt="{{ car.make }} {{ car.model }}">
+    {% elif car.image_file %}
+      <img src="{{ url_for('static', filename=car.image_file) }}" alt="{{ car.make }} {{ car.model }}">
+    {% else %}
+      <p>No image available</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

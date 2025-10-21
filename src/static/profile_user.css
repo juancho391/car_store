@@ -91,6 +91,12 @@ form {
   padding: 5px 10px;
 }
 
+.container-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+}
+
 .btns-delete {
   background-color: red !important; 
 }
@@ -128,6 +134,13 @@ img {
   border-radius: 5px;
 }
 
+.btns-delete {
+  border: white;
+  color: white;
+  padding: 7px;
+  border-radius: 5px;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -138,3 +151,8 @@ button:hover {
 .btns-delete:active {
   background-color: rgb(180, 0, 0); /* Más oscuro */
 }
+
+.edit {
+  text-decoration: none;
+  color: white;
+} 

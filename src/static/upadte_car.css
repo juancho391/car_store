@@ -1,0 +1,184 @@
+/* Estilos para la vista de update_car basados en profile_user.css */
+:root{
+  --accent: rebeccapurple;
+  --accent-dark: rgb(90,0,90);
+  --danger: #d9534f;
+  --shadow: 0 1px 5px rgba(0,0,0,0.15);
+  --radius: 7px;
+  --gap: 12px;
+}
+
+main {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: flex-start;
+}
+
+/* Left: formulario / Right: información del coche */
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  flex: 1 1 0;
+  max-width: 900px;
+}
+
+.section-forms {
+  background: #fff;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0 0 8px 0;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-control {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 100%;
+  box-sizing: border-box;
+  background: #fafafa;
+}
+
+/* Botones */
+.btn, .btns {
+  background-color: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .12s ease;
+}
+
+.btns:hover { background-color: var(--accent-dark); }
+.btns:active { background-color: #500046; }
+
+.container-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.btns-delete {
+  background-color: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+.btns-delete:hover { background-color: #b52b2b; }
+
+/* Right column: detalle del coche */
+.settings-profile {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-profile > div {
+  background: #fff;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.settings-profile p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* Contenedor de imagen del coche */
+.img_container {
+  width: 100%;
+  max-width: 280px;
+  height: 180px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
+}
+
+.img_container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Posts / listas (si las usas en esta vista) */
+.post {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+}
+
+/* Ajustes para imágenes pequeñas dentro de listados */
+.cointainer-image, .container-car img {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Accesibilidad visual y comportamiento */
+button:focus, input:focus, textarea:focus {
+  outline: 2px solid rgba(128,0,128,0.15);
+  outline-offset: 2px;
+}
+
+/* Responsive: apilar columnas en pantallas pequeñas */
+@media (max-width: 880px) {
+  main {
+    flex-direction: column;
+    padding: 14px;
+  }
+  .settings-profile {
+    width: 100%;
+    order: 2;
+  }
+  .container-profile {
+    order: 1;
+    max-width: 100%;
+  }
+  .img_container {
+    max-width: 100%;
+    height: 200px;
+  }
+}
