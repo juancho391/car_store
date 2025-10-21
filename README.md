@@ -91,3 +91,49 @@ A simple web application built with **Flask** to manage a car store. This projec
 ├─ **requirements.txt**  
 └─ **README.md**
 
+9. ## Database Models
+
+### User (1) — (N) Car
+
+**Table:** `ad_user`  
+
+**Fields:**  
+- `id`: Integer, **PK**  
+- `name`: String(80), **NOT NULL**  
+- `email`: String(256), **UNIQUE, NOT NULL**  
+- `password`: String(256) (hashed)  
+
+**Relationships:**  
+- One-to-many with `Car` (`User.cars` → list of user's cars)  
+
+**Typical Methods:**  
+- `set_password(password)` → store password hash  
+- `check_password(password)` → validate password  
+- `save()` → commit changes to the DB  
+- `get_by_email(email)`, `get_by_id(id)` → helper queries  
+
+---
+
+### Car
+
+**Table:** `ad_car`  
+
+**Fields:**  
+- `id`: Integer, **PK**  
+- `make`: String(80), **NOT NULL** (brand)  
+- `model`: String(80), **NOT NULL**  
+- `year`: Integer, **NOT NULL**  
+- `price`: Float, **NOT NULL**  
+- `slug`: String(150), **UNIQUE, NOT NULL** (friendly URL)  
+- `image_filename`: String(225) (relative path in `static/`)  
+- `user_id`: Integer, **FK → `ad_user.id`, NOT NULL**  
+
+**Relationships:**  
+- Belongs to `User` (`Car.user_id` → owner)  
+
+**Typical Methods:**  
+- `generate_slug()` → create unique slug using `slugify`  
+- `save()` → insert/update record and handle `IntegrityError`  
+- `get_by_slug(slug)`, `get_by_make(make, exclude_id=None, limit=5)`, `get_all()`, `get_by_id(id)`  
+
+
