@@ -46,3 +46,18 @@ A simple web application built with **Flask** to manage a car store. This projec
    docker compose up -d
 
    Then update DATABASE_URL in .env to connect to the container.
+
+5. List routes
+| **Ruta**                   | **Método(s)** | **Descripción**                                                                                                                 |
+| -------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                        | `GET`         | Página principal. Muestra todos los autos si el usuario no ha iniciado sesión, o todos excepto los suyos si ha iniciado sesión. |
+| `/login`                   | `GET`, `POST` | Muestra el formulario de inicio de sesión y autentica al usuario.                                                               |
+| `/signup`                  | `GET`, `POST` | Muestra el formulario de registro y crea un nuevo usuario.                                                                      |
+| `/logout`                  | `GET`         | Cierra la sesión actual y redirige al inicio.                                                                                   |
+| `/profile`                 | `GET`, `POST` | Página del perfil del usuario. Permite ver y añadir autos propios.                                                              |
+| `/my_cars`                 | `GET`         | Muestra los autos agregados por el usuario autenticado.                                                                         |
+| `/add_car`                 | `GET`, `POST` | Permite añadir un nuevo auto al perfil del usuario.                                                                             |
+| `/car/<slug>`              | `GET`         | Muestra el detalle de un auto específico. También sugiere autos similares por marca.                                            |
+| `/update_car/<int:car_id>` | `GET`, `POST` | Permite actualizar la información de un auto existente. Solo el propietario puede hacerlo.                                      |
+| `/delete_car/<int:car_id>` | `POST`        | Elimina un auto existente. Solo el propietario puede eliminarlo.                                                                |
+
