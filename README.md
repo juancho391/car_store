@@ -47,17 +47,19 @@ A simple web application built with **Flask** to manage a car store. This projec
 
    Then update DATABASE_URL in .env to connect to the container.
 
-5. List routes
-| **Ruta**                   | **Método(s)** | **Descripción**                                                                                                                 |
-| -------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `/`                        | `GET`         | Página principal. Muestra todos los autos si el usuario no ha iniciado sesión, o todos excepto los suyos si ha iniciado sesión. |
-| `/login`                   | `GET`, `POST` | Muestra el formulario de inicio de sesión y autentica al usuario.                                                               |
-| `/signup`                  | `GET`, `POST` | Muestra el formulario de registro y crea un nuevo usuario.                                                                      |
-| `/logout`                  | `GET`         | Cierra la sesión actual y redirige al inicio.                                                                                   |
-| `/profile`                 | `GET`, `POST` | Página del perfil del usuario. Permite ver y añadir autos propios.                                                              |
-| `/my_cars`                 | `GET`         | Muestra los autos agregados por el usuario autenticado.                                                                         |
-| `/add_car`                 | `GET`, `POST` | Permite añadir un nuevo auto al perfil del usuario.                                                                             |
-| `/car/<slug>`              | `GET`         | Muestra el detalle de un auto específico. También sugiere autos similares por marca.                                            |
-| `/update_car/<int:car_id>` | `GET`, `POST` | Permite actualizar la información de un auto existente. Solo el propietario puede hacerlo.                                      |
-| `/delete_car/<int:car_id>` | `POST`        | Elimina un auto existente. Solo el propietario puede eliminarlo.                                                                |
+
+5. ## Available Routes
+
+| Route | Methods | Description | Login Required |
+|-------|--------|-------------|----------------|
+| `/` | GET | Home page. Shows all cars if authenticated, or welcome message if not. | No |
+| `/login` | GET, POST | Login form and authentication. | No |
+| `/signup` | GET, POST | Sign up form to create a new user. | No |
+| `/logout` | GET | Logout the current user. | Yes |
+| `/my_cars` | GET | Shows all cars owned by the logged-in user. | Yes |
+| `/add_car` | GET, POST | Form to create a new car. | Yes |
+| `/car/<slug>` | GET | Detail view of a specific car identified by its slug. | Yes |
+| `/delete_car/<int:car_id>` | POST | Delete a car owned by the logged-in user. | Yes |
+| `/update_car/<int:car_id>` | GET, POST | Form to update a car owned by the logged-in user. | Yes |
+| `/profile` | GET, POST | User profile page with user's cars and option to add new cars. | Yes |
 
