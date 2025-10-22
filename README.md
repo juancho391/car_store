@@ -58,7 +58,7 @@ A simple web application built with **Flask** to manage a car store. This projec
 | `/logout` | GET | Logout the current user. | Yes |
 | `/my_cars` | GET | Shows all cars owned by the logged-in user. | Yes |
 | `/add_car` | GET, POST | Form to create a new car. | Yes |
-| `/car/<slug>` | GET | Detail view of a specific car identified by its slug. | Yes |
+| `/car/<slug>` | GET | Detail view of a specific car identified by its slug. | No |
 | `/delete_car/<int:car_id>` | POST | Delete a car owned by the logged-in user. | Yes |
 | `/update_car/<int:car_id>` | GET, POST | Form to update a car owned by the logged-in user. | Yes |
 | `/profile` | GET, POST | User profile page with user's cars and option to add new cars. | Yes |
