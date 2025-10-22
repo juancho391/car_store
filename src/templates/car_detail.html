@@ -1,21 +1,51 @@
 {% extends "base_template.html" %}
 
 {% block title %}Car Detail{% endblock %}
-
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='car_detail.css')}}">
+{% endblock %}
 {% block content %}
 <div class="container">
-    <h1>Car Detail</h1>
+        <div class="container-car">
+            <div class="container-image-main">
+                <img src="{{ url_for('static', filename=car.image_filename) }}" alt="Car Image" class="image-car">
 
-    <ul>
-        <li><strong>Make:</strong> {{ car.make }}</li>
-        <li><strong>Model:</strong> {{ car.model }}</li>
-        <li><strong>Year:</strong> {{ car.year }}</li>
-        <li><strong>Price:</strong> ${{ car.price }}</li>
-        <li><strong>Slug:</strong> {{ car.slug }}</li>
-    </ul>
-
-    <div class="buttons">
-        <a href="{{ url_for('index') }}" class="btn">Back to Home</a>
-    </div>
+            </div>
+            <ul class="list">
+                <h2>{{ car.make }}</h2>
+                <div class="description">
+                    <div class="container-description">
+                        <li><span class="key-word">Model:</span>{{ car.model }}</li>
+                        <li><span class="key-word">Year:</span>{{ car.year }}</li>
+                    </div>
+                    <div class="container-description">
+                        <li><span class="key-word">Price:</span>{{ car.price }}</li>
+                        <li><span class="key-word">Slug:</span>{{ car.slug }}</li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    
 </div>
+<section class="section-similar">
+        <h2>
+            Similar Cars
+        </h2>
+        <div class="container-sugestion">
+            {% for car in cars %}
+                <div class="sugestion-item">
+                  <a href="{{ url_for('car_detail', slug=car.slug) }}" class="link-similar">
+                    <div class="images-car-similar">
+                          <img src="{{ url_for('static', filename=car.image_filename) }}" alt="{{ car.make }} {{ car.model }}">
+                    </div>
+                    <div class="sugestion-description">
+                        <p class="model-name">{{ car.model }}</p>
+                        <p class="price">${{ "%.2f"|format(car.price) }}</p>
+                    </div>
+                  </a>
+                </div>
+            {% endfor %}
+        </div>
+</section>
+
 {% endblock %}

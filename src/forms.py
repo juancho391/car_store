@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, SubmitField, PasswordField, TextAreaField, BooleanField
 from wtforms.validators import DataRequired, Email, Length
 
@@ -22,4 +23,5 @@ class CarForm(FlaskForm):
     model = StringField("Modelo", validators=[DataRequired(), Length(max=80)])
     year = StringField("Año", validators=[DataRequired()])
     price = StringField("Precio", validators=[DataRequired()])
+    image = FileField("Image", validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField("Guardar")

@@ -1,43 +1,40 @@
 {% extends "base_template.html" %}
 
 {% block title %}Welcome{% endblock %}
-
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endblock %}
 {% block content %}
-<div class="welcome-container">
-    {% if current_user.is_authenticated %}
-        <h1>Welcome to Car Store, {{ current_user.name }}!</h1>
-        <p>Manage your cars easily and quickly.</p>
-
-        <div class="buttons">
-            <a href="{{ url_for('add_car') }}" class="btn">Add Car</a>
-            <a href="{{ url_for('my_cars') }}" class="btn">My Cars</a>
-            <a href="{{ url_for('logout') }}" class="btn">Logout</a>
-        </div>
-
-        <h2>Cars:</h2>
-        {% if cars %}
-            <ul class="car-list">
-                {% for car in cars %}
-    <li>
-        <a href="{{ url_for('car_detail', slug=car.slug) }}">
-            <strong>Make:</strong> {{ car.make }} |
-            <strong>Price:</strong> ${{ car.price }} |
-            <strong>Slug:</strong> {{ car.slug }}
-        </a>
-    </li>
-{% endfor %}
-
-            </ul>
-        {% else %}
-            <p>No cars available yet.</p>
-        {% endif %}
-    {% else %}
-        <h1>Welcome to Car Store!</h1>
-        <p>Manage your cars easily and quickly.</p>
-        <div class="buttons">
-            <a href="{{ url_for('show_signup_form') }}" class="btn">Sign Up</a>
-            <a href="{{ url_for('login') }}" class="btn">Login</a>
-        </div>
-    {% endif %}
+<div class="cointainer-index">
+    <section class="section-filters">
+        <h2>Filters</h2>
+        <ul>
+            <li><a href="">New Cars</a></li>
+            <li><a href="">Used Cars</a></li>
+        </ul>
+    </section>
+    <main class="main-cars">
+        <h2>Avaliable cars!</h2>
+        <section class="section-cars">
+            {% for car in cars %}
+                <div class="cointainer-post">
+                    <div class="cointainer-image">
+                        <img src="{{ url_for('static', filename=car.image_filename) }}" alt="">
+                    </div>
+                    <div class="information-car">
+                        <div>
+                            <p>{{car.model}}</p>
+                            <p>{{car.price}}</p>
+                        </div>
+                        <div class="view-mas">
+                            <button class="button-detail">
+                                <a href="{{ url_for('car_detail', slug=car.slug)}}">View details</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    </main>
 </div>
 {% endblock %}

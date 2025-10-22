@@ -1,0 +1,156 @@
+
+
+main {
+  display: flex;
+  padding: 10px;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.section-car {
+  display: flex;
+  flex-direction: row;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  flex-grow: 1;
+}
+
+.container-car {
+  display: flex;
+  align-items: center;
+  box-shadow: 1px 1px 4px gray;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+ul {
+  min-width: 200px;
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container-image-main {
+  width: 400px;
+  height: 200px;
+}
+
+
+
+.image-car {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  
+  border-radius: 5px;
+}
+
+
+.images-car-similar {
+  width: 170px;
+  height: 100px;
+}
+
+
+.key-word {
+  font-weight: bold;
+}
+
+.images-car-similar > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.container-description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-similar {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  box-shadow: 1px 1px 5px gray;
+  border-radius: 5px;
+}
+
+.sugestion-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+
+.description {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+.link-similar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* descripción a la derecha de la imagen: columna compacta y manejable */
+.sugestion-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0; /* para que text-overflow funcione */
+}
+
+/* nombre / modelo: truncar si es muy largo */
+.sugestion-description .model-name {
+  font-weight: 600;
+  margin: 0;
+  font-size: 15px;
+  color: #222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* precio: estilo secundario */
+.sugestion-description .price {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* ajuste responsive: reducir texto y ancho de imagen en pantallas pequeñas */
+@media (max-width: 600px) {
+  .images-car-similar {
+    width: 120px;
+    height: 80px;
+  }
+  .sugestion-description .model-name {
+    font-size: 14px;
+  }
+  .sugestion-description .price {
+    font-size: 13px;
+  }
+}
+
+.information-car {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 100%;
+}
+
+

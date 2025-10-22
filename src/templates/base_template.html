@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Car Store{% endblock %}</title>
-    <!-- Puedes agregar CSS aquí -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base-css.css') }}">
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <header>
         <nav>
-            <a href="{{ url_for('index') }}">Home</a>
-            {% if current_user.is_authenticated %}
-                <a href="{{ url_for('logout') }}">Logout</a>
-            {% else %}
-                <a href="{{ url_for('login') }}">Login</a>
-                <a href="{{ url_for('show_signup_form') }}">Sign Up</a>
-            {% endif %}
+            <div class="div-home">
+                <img src="../static/images/carro.png">
+                <a href="{{ url_for('index') }}" class="a-home">Car Marketplace</a>
+            </div>
+            <input type="text" placeholder="Search cars.. ">
+            <div class="div-profile">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('profile') }}"> Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}"> Login</a>
+                    <a href="{{ url_for('show_signup_form') }}"> Sign up</a>
+                {% endif %}
+            </div>
         </nav>
     </header>
 
@@ -25,7 +33,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Car Store</p>
+
     </footer>
 </body>
 </html>

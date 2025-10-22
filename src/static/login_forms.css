@@ -1,0 +1,41 @@
+
+h2 {
+  color: rebeccapurple;
+}
+
+
+.form-container {
+  width: 500px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 1px gray;
+  padding: 10px;
+}
+
+.form-container:hover {
+  box-shadow: 1px 1px 2px gray;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+
+.input-field {
+  padding: 5px;
+  min-width: 300px;
+}
+
+button {
+  background-color: rebeccapurple;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+}

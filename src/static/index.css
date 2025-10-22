@@ -1,0 +1,119 @@
+/* layout: sidebar de filtros + contenido principal */
+.cointainer-index {
+  display: grid;
+  grid-template-columns: 240px 1fr; /* ancho fijo de filtros + contenido flexible */
+  gap: 32px;                         /* separación clara entre filtros y posts */
+  align-items: start;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* sidebar de filtros */
+.section-filters {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  height: max-content;
+  position: sticky; /* queda visible al hacer scroll */
+  top: 80px;
+}
+
+/* espaciado interno del main y título */
+.main-cars {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* layout de la lista de posts: 3 columnas fijas */
+.section-cars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;            /* espacio entre items */
+  align-items: start;
+  margin: 0;            /* evita desplazamientos laterales inesperados */
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* tarjeta del post */
+.cointainer-post {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-sizing: border-box;
+  margin: 0;            /* asegurarse de no introducir márgenes que desplacen la grid */
+}
+
+/* imagen: ocupa el ancho total de la tarjeta */
+.cointainer-image img {
+  display: block;       /* evita espacios inline */
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Botón de detalle */
+.button-detail {
+  background: rebeccapurple;
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .12s ease, transform .06s ease;
+}
+
+.button-detail:hover {
+  background: #5a0060;
+  transform: translateY(-1px);
+}
+
+.button-detail:active {
+  background: #470046;
+  transform: translateY(0);
+}
+
+.button-detail a {
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive: 2 columnas en tablet, 1 en móvil */
+@media (max-width: 1000px) {
+  .cointainer-index {
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+  }
+  .section-cars {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .cointainer-index {
+    grid-template-columns: 1fr; /* apilar filtros encima del contenido */
+    gap: 14px;
+  }
+  .section-filters {
+    position: relative; /* dejar de ser sticky en móvil */
+    top: auto;
+  }
+  .section-cars {
+    grid-template-columns: 1fr;
+  }
+}
+
