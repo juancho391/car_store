@@ -136,4 +136,79 @@ A simple web application built with **Flask** to manage a car store. This projec
 - `save()` → insert/update record and handle `IntegrityError`  
 - `get_by_slug(slug)`, `get_by_make(make, exclude_id=None, limit=5)`, `get_all()`, `get_by_id(id)`  
 
+- Registrarse  
+  - Ruta: `/signup`  
+  - Métodos: GET, POST  
+  - Auth: no  
+  - Descripción: crear cuenta; al registrarse se hace login automáticamente.
+
+- Iniciar sesión  
+  - Ruta: `/login`  
+  - Métodos: GET, POST  
+  - Auth: no  
+  - Descripción: autenticar usuario y redirigir a `next` o a la página principal.
+
+- Cerrar sesión  
+  - Ruta: `/logout`  
+  - Métodos: GET  
+  - Auth: sí (actúa sobre la sesión actual)  
+  - Descripción: cerrar sesión y redirigir a la página principal.
+
+- Ver catálogo de coches  
+  - Ruta: `/`  
+  - Métodos: GET  
+  - Auth: no  
+  - Descripción: lista de coches disponibles. Si el usuario está logueado, sus propios anuncios se excluyen del listado principal.
+
+- Ver detalle de un coche  
+  - Ruta: `/car/<slug>`  
+  - Métodos: GET  
+  - Auth: no  
+  - Descripción: muestra información del coche y hasta 5 coches similares (misma marca). Cada similar enlaza a su propio detalle.
+
+- Ver perfil / añadir coche desde perfil  
+  - Ruta: `/profile`  
+  - Métodos: GET, POST  
+  - Auth: sí  
+  - Descripción: formulario para añadir un coche y listado de los coches del usuario; gestion de subida de imagen.
+
+- Listado de mis coches  
+  - Ruta: `/my_cars`  
+  - Métodos: GET  
+  - Auth: sí  
+  - Descripción: alternativa para ver solo los anuncios del usuario.
+
+- Añadir coche (form)  
+  - Rutas: `/profile` (POST) o `/add_car` (GET, POST)  
+  - Métodos: GET, POST  
+  - Auth: sí  
+  - Descripción: crear anuncio, subir imagen a `static/uploads`, generar slug y redirigir al detalle.
+
+- Editar coche  
+  - Ruta: `/update_car/<int:car_id>`  
+  - Métodos: GET, POST  
+  - Auth: sí (solo propietario)  
+  - Descripción: prellenar formulario con los datos actuales, modificar campos y subir imagen opcional; guarda y regenera slug.
+
+- Eliminar coche  
+  - Ruta: `/delete_car/<int:car_id>`  
+  - Métodos: POST  
+  - Auth: sí (solo propietario)  
+  - Descripción: borrar anuncio del usuario.
+
+- Navegar entre anuncios relacionados  
+  - Ruta objetivo: `/car/<slug>` desde cada sugerencia  
+  - Métodos: GET  
+  - Auth: no  
+  - Descripción: desde la sección "Similar Cars" en el detalle se puede ir a cada publicación.
+
+- Subir/gestionar imágenes  
+  - Implementación: campo `image` en formularios (FileField), archivos guardados en `static/uploads`, `image_filename` guarda la ruta relativa.  
+  - Auth: sí para crear/editar.
+
+Notas importantes
+- Operaciones de creación/edición/eliminación verifican que el usuario sea el propietario (comparación `car.user_id == current_user.id`).
+- Los slugs se generan automáticamente con `generate_slug()` y se evita colisión al guardar.
+- Asegúrate de tener configuradas las variables de entorno (`SQLALCHEMY_DATABASE_URL`, `SECRET_KEY`) antes de usar funciones que interactúen con la BD.
+
 
