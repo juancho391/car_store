@@ -32,6 +32,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
 
+# Route: home page, show available cars (exclude user's cars when logged)
 @app.route("/")
 def index():
     if current_user.is_authenticated:
@@ -41,6 +42,7 @@ def index():
     return render_template("index.html", cars=cars)
 
 
+# Route: show current user's cars (requires login)
 @app.route("/my_cars")
 @login_required
 def my_cars():
@@ -48,6 +50,7 @@ def my_cars():
     return render_template("my_cars.html", cars=cars)
 
 
+# Route: add a new car via CarForm, persist and redirect to my_cars
 @app.route("/add_car", methods=["GET", "POST"])
 @login_required
 def add_car():
@@ -69,6 +72,8 @@ def add_car():
         return redirect(url_for("my_cars"))
     return render_template("car_form.html", form=form)
 
+
+# Route: car detail page, also load up to 5 similar cars by make
 @app.route("/car/<slug>")
 def car_detail(slug):
     car = Car.get_by_slug(slug)
@@ -77,6 +82,8 @@ def car_detail(slug):
     similar_cars = Car.get_by_make(car.make, exclude_id=car.id, limit=5)
     return render_template("car_detail.html", car=car, cars=similar_cars)
 
+
+# Route: delete a car owned by current user (POST only)
 @app.route("/delete_car/<int:car_id>", methods=["POST"])
 @login_required
 def delete_car(car_id):
@@ -87,7 +94,7 @@ def delete_car(car_id):
     return redirect(url_for("profile"))
 
 
-
+# Route: update existing car, prefill form and handle image upload
 @app.route("/update_car/<int:car_id>", methods=["GET", "POST"])
 @login_required
 def update_car(car_id):
@@ -97,11 +104,9 @@ def update_car(car_id):
     if car.user_id != current_user.id:
         abort(403)
 
-    # prefill form with existing data
     form = CarForm(obj=car)
 
     if form.validate_on_submit():
-        # actualizar campos solo si vienen datos
         if form.make.data and form.make.data.strip():
             car.make = form.make.data.strip()
         if form.model.data and form.model.data.strip():
@@ -111,7 +116,6 @@ def update_car(car_id):
         if form.price.data and str(form.price.data).strip():
             car.price = float(form.price.data)
 
-        # manejar imagen opcional
         if form.image.data:
             file = form.image.data
             filename = secure_filename(file.filename)
@@ -128,6 +132,7 @@ def update_car(car_id):
     return render_template("update_car.html", form=form, car=car)
 
 
+# Route: login page, authenticate and redirect to next or index
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
@@ -143,6 +148,8 @@ def login():
             return redirect(next_page)
     return render_template("login_form.html", form=form)
 
+
+# Route: signup page, create user, login and redirect
 @app.route("/signup", methods=["GET", "POST"])
 def show_signup_form():
     if current_user.is_authenticated:
@@ -168,16 +175,20 @@ def show_signup_form():
     return render_template("/signup_form.html", form=form, error=error)
 
 
+# Route: logout current user and redirect to index
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for("index"))
 
 
+# User loader for flask-login: return User by id
 @login_manager.user_loader
 def load_user(user_id):
     return User.get_by_id(int(user_id))
 
+
+# Route: profile page, handles adding a car for the logged user
 @app.route("/profile", methods = ['POST', 'GET'])
 def profile():
     form = CarForm()
@@ -206,8 +217,9 @@ def profile():
     return render_template("profile_user.html", form=form, cars= cars)
 
 
+# Application entry: create tables if needed and run dev server
 if __name__ == "__main__":
-    app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024  # Limita a 2MB opcional
+    app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
     with app.app_context():
         db.create_all()
         print(db.engine.table_names())
