@@ -47,6 +47,36 @@ A simple web application built with **Flask** to manage a car store. This projec
 
    Then update DATABASE_URL in .env to connect to the container.
 
+Variables obligatorias
+- `SQLALCHEMY_DATABASE_URL`  
+  - URL de la base de datos. Ejemplos:
+    - SQLite local: `sqlite:///dev.db`
+    - Postgres: `postgresql://user:pass@localhost:5432/dbname`
+- `SECRET_KEY`  
+  - Clave secreta para sesiones y CSRF. Generar un valor seguro.
+
+Variables opcionales (útiles en desarrollo)
+- `FLASK_APP` — módulo de la app para el CLI (ej.: `src.run`)
+- `FLASK_ENV` — `development` para recarga y debug
+
+Ejemplo mínimo de archivo `.env`
+```ini
+SQLALCHEMY_DATABASE_URL=sqlite:///dev.db
+SECRET_KEY=change_this_to_a_secure_random_value
+```
+
+Exportar temporalmente en shell
+```bash
+export SQLALCHEMY_DATABASE_URL="sqlite:///dev.db"
+export SECRET_KEY="$(python -c 'import secrets; print(secrets.token_hex(32))')"
+export FLASK_APP=src.run
+export FLASK_ENV=development
+```
+
+Notas
+- `src/run.py` usa `load_dotenv()` así que basta con crear `.env` en la raíz del proyecto.
+- No subir `.env` al repositorio (añadir a `.gitignore`).
+- Ajustar `SQLALCHEMY_DATABASE_URL` según el entorno (local, staging, production).
 
 5. ## Available Routes
 
